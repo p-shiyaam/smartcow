@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense } from "react";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
-function App() {
+import { AppContext } from "./contexts";
+import { PrivateRoute, PublicRoute } from "./components";
+import { useAppReducer } from "./reducers";
+import ErrorBoundary from "./pages/ErrorBoundary";
+
+const LoginPage = lazy(() => import("./pages/Login"));
+const CreateVideoPage = lazy(() => import("./pages/CreateVideo"));
+const NotFoundPage = lazy(() => import("./pages/NotFound"));
+
+const App = () => {
+  const [state, dispatch] = useAppReducer();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <ErrorBoundary>
+        <AppContext.Provider value={{ ...state, dispatch }}>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Routes>
+              <Route path="*" element={<NotFoundPage />} />
+              <Route path="/" element={<Navigate to="/login" />} />
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute>
+                    <LoginPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/create-video"
+                element={
+                  <PrivateRoute>
+                    <CreateVideoPage />
+                  </PrivateRoute>
+                }
+              />
+            </Routes>
+          </Suspense>
+        </AppContext.Provider>
+      </ErrorBoundary>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
