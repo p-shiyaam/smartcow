@@ -165,12 +165,4 @@ const AlignmentAttribute = ({ selectedAlignment, setAlignment }) => {
   );
 };
 
-const BackgroundAttribute: React.FC = () => {
-  return (
-    <div>
-      <p>background</p>
-    </div>
-  );
-};
-
 export default CreateVideo;
