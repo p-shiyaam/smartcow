@@ -1,3 +1,3 @@
-import useAppReducer from "./AppReducer";
+import { useAppReducer } from "./AppReducer";
 
 export { useAppReducer };

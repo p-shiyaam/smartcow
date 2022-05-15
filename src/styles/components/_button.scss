@@ -1,0 +1,18 @@
+@use "../base";
+
+@mixin button {
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+  padding: 6px 20px;
+  border-radius: 6px;
+  border: none;
+  align-self: center;
+}
+
+.btn-submit {
+  @include button;
+  background-color: base.$green;
+  color: #fff;
+}

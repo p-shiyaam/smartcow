@@ -1,0 +1,14 @@
+.sidebar-container {
+  $sidebar-padding: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  padding: $sidebar-padding 0px;
+  background-color: #fff;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.logo-small {
+  width: 35px;
+  height: 35px;
+}

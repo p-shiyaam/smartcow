@@ -1,57 +1,64 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form, FormikHelpers } from "formik";
 import { useAlert } from "react-alert";
 
-import { AppContext } from "../contexts";
 import { Sidebar, Header, Button, FormField } from "../components";
-import { localstorage, isEmpty } from "../utils";
+import { splitName, localstorage } from "../utils";
 
-type LoginFormProps = {
+type SignupFormProps = {
+  name: string;
   email: string;
   password: string;
 };
 
-const Login: React.FC = () => {
+const Signup: React.FC = () => {
   const navigate = useNavigate();
-  const { dispatch } = useContext(AppContext);
   const alert = useAlert();
 
-  const handleLogin = (
-    values: LoginFormProps,
-    { setSubmitting }: FormikHelpers<LoginFormProps>,
+  const handleSignup = (
+    values: SignupFormProps,
+    { setSubmitting }: FormikHelpers<SignupFormProps>,
   ) => {
     setSubmitting(false); // Enable submit button
-    const { password, ...user } = localstorage.get(values.email) || {};
 
-    // Check if user exists in DB
-    if (isEmpty(user)) {
-      alert.error("User not found");
+    // Check if user already signed up
+    if (localstorage.isExisting(values.email)) {
+      alert.error("Email already exists");
       return;
     }
 
-    // Check if password is correct and redirect to dashboard
-    if (password === values.password) {
-      dispatch({ type: "LOGIN", payload: user });
-      navigate("/create-video");
-      return;
-    }
-    alert.error("Invalid email or password");
+    // Set user data in DB and navigate to login
+    localstorage.set(values.email, {
+      ...splitName(values.name),
+      password: values.password,
+      email: values.email,
+    });
+
+    alert.success("Signup successful");
+    navigate("/login");
   };
 
   return (
     <div className="login-signup-container">
       <Sidebar />
       <div className="login-signup-body-container">
-        <Header title="sign in" />
+        <Header title="create an account" />
         <div className="login-signup-form-container">
           <Formik
-            initialValues={{ email: "", password: "" }}
-            onSubmit={handleLogin}
+            initialValues={{ name: "", email: "", password: "" }}
+            onSubmit={handleSignup}
           >
             {({ isSubmitting }) => (
               <Form className="form">
                 <div className="form-fields-container">
+                  <FormField
+                    type="text"
+                    name="name"
+                    label="Full name"
+                    required
+                    minLength={3}
+                  />
                   <FormField
                     type="email"
                     name="email"
@@ -66,13 +73,13 @@ const Login: React.FC = () => {
                     minLength={8}
                   />
                 </div>
-                <Button text="Login" disabled={isSubmitting} />
+                <Button text="Signup" disabled={isSubmitting} />
               </Form>
             )}
           </Formik>
           <div className="footer-link">
-            <span>New here?</span>
-            <Link to="/signup">Signup</Link>
+            <span>Already user?</span>
+            <Link to="/login">Login</Link>
           </div>
         </div>
       </div>
@@ -80,4 +87,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Signup;

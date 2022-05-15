@@ -1,0 +1,43 @@
+@use "../base";
+
+.login-signup-container {
+  display: flex;
+  $padding: 40px;
+  padding: $padding 0px;
+  height: calc(100vh - $padding * 2);
+  background-image: url("../../../public/logo-big-bg.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right top;
+}
+
+.login-signup-form-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+
+  .footer-link {
+    margin-top: 65px;
+    span {
+      font-size: 13px;
+      padding: 0px 5px;
+    }
+    a {
+      font-size: 13px;
+      text-decoration: none;
+      color: base.$blue;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.login-signup-body-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
