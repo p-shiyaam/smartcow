@@ -1,7 +1,7 @@
 import React from "react";
 
 type IconProps = {
-  name: "create-video" | "saved-videos";
+  name: "create-video" | "saved-videos" | "tick" | "invoice" | "close";
   color?: string;
   size?: number;
 };
