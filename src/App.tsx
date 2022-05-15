@@ -7,6 +7,7 @@ import { useAppReducer } from "./reducers";
 import { useLocalStorage } from "./hooks";
 import ErrorBoundary from "./pages/ErrorBoundary";
 import { appInitialState } from "./reducers/AppReducer";
+import { Loader } from "./components";
 
 // Public routes
 const LoginPage = lazy(() => import("./pages/Login"));
@@ -31,7 +32,7 @@ const App = () => {
     <BrowserRouter>
       <ErrorBoundary>
         <AppContext.Provider value={{ ...state, dispatch }}>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <Routes>
               {/* Public Routes - START */}
               <Route path="*" element={<NotFoundPage />} />

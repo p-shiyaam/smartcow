@@ -40,7 +40,7 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className="login-signup-container">
+    <div className="app-wrapper login-signup-container">
       <Sidebar />
       <div className="login-signup-body-container">
         <Header title="create an account" />

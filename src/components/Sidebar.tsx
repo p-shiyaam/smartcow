@@ -1,12 +1,50 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
+
+import { colors } from "../constants";
+import { Icon } from "../icons";
 
 const Sidebar: React.FC = () => {
   return (
     <div className="sidebar-container">
-      <div>
+      <div className="sidebar-logo">
         <img className="logo-small" src="./logo_small.png" alt="logo small" />
       </div>
+      <div className="sidebar-nav">
+        <ul>
+          <SidebarNavItem route="/create-video" name="create-video" />
+          <SidebarNavItem route="/saved-videos" name="saved-videos" />
+        </ul>
+      </div>
+      <div className="sidebar-footer">
+        <Link to="/profile">
+          <img
+            className="logo-small"
+            src="./user-profile.png"
+            alt="profile pic"
+          />
+        </Link>
+      </div>
     </div>
+  );
+};
+
+const SidebarNavItem = ({ route, name }) => {
+  const location = useLocation();
+
+  const isActiveRoute = (path: string) => {
+    return location.pathname === path;
+  };
+  return (
+    <li className={`sidebar-nav-item ${isActiveRoute(route) ? "active" : ""}`}>
+      <Link to={route}>
+        <Icon
+          name={name}
+          color={isActiveRoute(route) ? colors.blue : colors.grayDark}
+          size={28}
+        />
+      </Link>
+    </li>
   );
 };
 

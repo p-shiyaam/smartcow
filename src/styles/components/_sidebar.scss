@@ -1,7 +1,10 @@
+@use "../base";
+
 .sidebar-container {
   $sidebar-padding: 10px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100px;
   padding: $sidebar-padding 0px;
   background-color: #fff;
@@ -11,4 +14,29 @@
 .logo-small {
   width: 35px;
   height: 35px;
+}
+
+.sidebar-nav {
+  padding: 50px 0px;
+}
+
+.sidebar-nav-item {
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 10px 0px;
+
+  &.active,
+  &:hover {
+    background-color: base.$blue-light;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  svg {
+    padding: 16px;
+  }
+}
+
+.sidebar-footer {
+  margin-top: auto;
 }

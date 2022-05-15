@@ -1,10 +1,6 @@
 @use "../base";
 
 .login-signup-container {
-  display: flex;
-  $padding: 40px;
-  padding: $padding 0px;
-  height: calc(100vh - $padding * 2);
   background-image: url("../../../public/logo-big-bg.png");
   background-repeat: no-repeat;
   background-attachment: fixed;

@@ -1,9 +1,10 @@
 import React from "react";
+import { Sidebar } from "../components";
 
 const SavedVideos: React.FC = () => {
   return (
-    <div>
-      <h1>SavedVideos</h1>
+    <div className="app-wrapper saved-videos-container">
+      <Sidebar />
     </div>
   );
 };
