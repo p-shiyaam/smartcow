@@ -42,7 +42,7 @@ const Login: React.FC = () => {
   return (
     <div className="app-wrapper login-signup-container">
       <Sidebar />
-      <div className="login-signup-body-container">
+      <div className="app-body-container">
         <Header title="sign in" />
         <div className="login-signup-form-container">
           <Formik

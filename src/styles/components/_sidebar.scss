@@ -5,7 +5,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
   padding: $sidebar-padding 0px;
   background-color: #fff;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
@@ -39,4 +40,13 @@
 
 .sidebar-footer {
   margin-top: auto;
+
+  &:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+  }
+
+  img {
+    border-radius: 50%;
+  }
 }

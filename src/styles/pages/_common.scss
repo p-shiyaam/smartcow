@@ -4,3 +4,9 @@
   padding: $padding 0px;
   height: calc(100vh - $padding * 2);
 }
+
+.app-body-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}

@@ -3,16 +3,34 @@
 @mixin button {
   text-transform: capitalize;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 21px;
   padding: 6px 20px;
   border-radius: 6px;
   border: none;
   align-self: center;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+  }
 }
 
-.btn-submit {
+.btn-primary {
   @include button;
   background-color: base.$green;
   color: #fff;
+}
+
+.btn-secondary {
+  @include button;
+  background-color: base.$blue-light;
+  color: base.$blue;
+}
+
+.btn-default {
+  @include button;
+  background-color: base.$gray-light;
+  color: base.$gray-dark;
 }

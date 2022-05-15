@@ -1,0 +1,150 @@
+@use "../base";
+
+.video-editor {
+  margin: 20px 30px;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  max-height: 80%;
+  .video-preview-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 60%;
+    background-color: base.$gray-light;
+    border-radius: 20px;
+    padding: 20px;
+
+    .video-preview {
+      position: relative;
+      height: 70%;
+      width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 20px;
+
+      img {
+        width: 100%;
+        border-radius: 20px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .preview-button {
+        position: absolute;
+        z-index: 10;
+        left: 0;
+        right: 0;
+        top: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100px;
+      }
+    }
+
+    .video-text {
+      height: 30%;
+      background-color: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      padding: 10px 30px;
+
+      textarea {
+        height: 60%;
+        width: 100%;
+        padding: 20px 0px;
+        border: none;
+        resize: none;
+        outline: none;
+        font-size: 16px;
+        overflow: scroll;
+
+        &::placeholder {
+          color: base.$gray-dark;
+        }
+      }
+
+      button {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+.video-customisation {
+  height: 100%;
+  width: 40%;
+  padding: 0px 40px;
+
+  ul.video-attributes-tab {
+    display: flex;
+
+    li {
+      font-size: 15px;
+      color: base.$gray-dark;
+      margin: 10px 30px 10px 0px;
+      cursor: pointer;
+      text-transform: capitalize;
+
+      &.active {
+        color: base.$blue;
+      }
+      &:hover {
+        color: base.$blue;
+        transition: 0.3s;
+      }
+    }
+  }
+
+  ul.actors-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 100%;
+    padding: 30px 0px;
+
+    li {
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      color: base.$gray-dark;
+      margin-bottom: 15px;
+
+      &:hover,
+      &.active {
+        color: base.$blue;
+        transition: 0.3s;
+      }
+
+      img {
+        border: 2px solid #e8e8e8;
+        border-radius: 6px;
+        width: 150px;
+        height: 85px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+        &:hover {
+          border: 2px solid base.$blue;
+          transition: 0.3s;
+        }
+      }
+
+      span {
+        font-size: 12px;
+        text-align: center;
+        text-transform: capitalize;
+        margin-top: 5px;
+      }
+
+      &.active {
+        img {
+          border: 2px solid base.$blue;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+}
