@@ -16,6 +16,17 @@ const AppReducer = (
         user: action.payload,
         isLoggedIn: true,
       };
+    case "UPDATE_USER_INFO":
+      const userFromDM = localstorage.get(action.payload.email);
+      localstorage.set("loggedinUser", action.payload);
+      localstorage.set(action.payload.email, {
+        ...userFromDM,
+        ...action.payload,
+      });
+      return {
+        ...state,
+        user: action.payload,
+      };
     case "LOGOUT":
       localstorage.set("loggedinUser", null);
       return { ...state, user: {}, isLoggedIn: false };
@@ -23,14 +34,6 @@ const AppReducer = (
       throw new Error();
   }
 };
-
-// export const useAppReducer = ({
-//   initialState = appInitialState,
-// }: {
-//   initialState: AppStateProps;
-// }) => {
-//   return useReducer(AppReducer, initialState);
-// };
 
 export const useAppReducer = (initialState: AppStateProps) => {
   return useReducer(AppReducer, initialState);

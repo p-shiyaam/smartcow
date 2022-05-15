@@ -1,30 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 
+import { AppContext } from "../contexts";
 import { colors } from "../constants";
 import { Icon } from "../icons";
 
 const Sidebar: React.FC = () => {
+  const { isLoggedIn } = useContext(AppContext);
+
   return (
     <div className="sidebar-container">
       <div className="sidebar-logo">
         <img className="logo-small" src="./logo_small.png" alt="logo small" />
       </div>
-      <div className="sidebar-nav">
-        <ul>
-          <SidebarNavItem route="/create-video" name="create-video" />
-          <SidebarNavItem route="/saved-videos" name="saved-videos" />
-        </ul>
-      </div>
-      <div className="sidebar-footer">
-        <Link to="/profile">
-          <img
-            className="logo-small"
-            src="./user-profile.png"
-            alt="profile pic"
-          />
-        </Link>
-      </div>
+      {isLoggedIn && (
+        <>
+          <div className="sidebar-nav">
+            <ul>
+              <SidebarNavItem route="/create-video" name="create-video" />
+              <SidebarNavItem route="/saved-videos" name="saved-videos" />
+            </ul>
+          </div>
+          <div className="sidebar-footer">
+            <Link to="/my-account">
+              <img
+                className="logo-small"
+                src="./user-profile.png"
+                alt="profile pic"
+              />
+            </Link>
+          </div>
+        </>
+      )}
     </div>
   );
 };

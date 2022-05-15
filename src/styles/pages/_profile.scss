@@ -1,0 +1,33 @@
+.profile-container {
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  .user-form {
+    display: flex;
+    margin-top: 45px;
+
+    input {
+      width: 300px;
+    }
+
+    .form-field-container {
+      margin-top: 15px;
+    }
+
+    .name-container {
+      display: flex;
+
+      input {
+        margin-right: 40px;
+      }
+    }
+
+    button {
+      align-self: flex-start;
+      margin-top: 20px;
+    }
+  }
+}

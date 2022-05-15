@@ -1,0 +1,46 @@
+@use "../base";
+
+.saved-videos-container {
+  .app-body-container {
+    ul.video-list {
+      > li {
+        display: flex;
+        flex-direction: column;
+        width: 285px;
+        height: 240px;
+        overflow: hidden;
+        border-radius: 6px;
+        margin: 40px;
+        background-color: base.$gray-light;
+
+        img {
+          width: 93%;
+          height: 65%;
+          border-radius: 6px;
+          object-fit: cover;
+          margin: 10px;
+        }
+
+        span {
+          text-align: center;
+        }
+
+        ul.tag-list {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin: 15px 30px;
+
+          > li {
+            border-radius: 6px;
+            border: 1px solid base.$gray-dark;
+            font-size: 12px;
+            background: transparent;
+            color: base.$gray-dark;
+            padding: 3px 10px;
+          }
+        }
+      }
+    }
+  }
+}

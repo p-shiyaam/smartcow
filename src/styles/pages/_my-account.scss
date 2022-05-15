@@ -1,0 +1,28 @@
+@use "../base";
+
+.my-account-container {
+  .my-account-body-container {
+    margin: 20px 40px;
+
+    ul.pages-tab {
+      display: flex;
+      margin-bottom: 45px;
+
+      li {
+        font-size: 15px;
+        color: base.$gray-dark;
+        margin: 10px 30px 10px 0px;
+        cursor: pointer;
+        text-transform: capitalize;
+
+        &.active {
+          color: base.$blue;
+        }
+        &:hover {
+          color: base.$blue;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+}

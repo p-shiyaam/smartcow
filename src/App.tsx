@@ -17,9 +17,7 @@ const NotFoundPage = lazy(() => import("./pages/NotFound"));
 // Private routes
 const CreateVideoPage = lazy(() => import("./pages/CreateVideo"));
 const SavedVideosPage = lazy(() => import("./pages/SavedVideos"));
-const ProfilePage = lazy(() => import("./pages/Profile"));
-const BillingPage = lazy(() => import("./pages/Billing"));
-const MyPlanPage = lazy(() => import("./pages/MyPlan"));
+const MyAccountPage = lazy(() => import("./pages/MyAccount"));
 
 const App = () => {
   const [user] = useLocalStorage("loggedinUser") || {};
@@ -73,26 +71,10 @@ const App = () => {
                 }
               />
               <Route
-                path="/profile"
+                path="/my-account"
                 element={
                   <PrivateRoute>
-                    <ProfilePage />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/billing"
-                element={
-                  <PrivateRoute>
-                    <BillingPage />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="/my-plan"
-                element={
-                  <PrivateRoute>
-                    <MyPlanPage />
+                    <MyAccountPage />
                   </PrivateRoute>
                 }
               />

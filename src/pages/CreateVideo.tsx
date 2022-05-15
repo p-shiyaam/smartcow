@@ -2,10 +2,22 @@ import React, { useState } from "react";
 import { Sidebar, Header, Button } from "../components";
 import { isEmpty } from "../utils";
 
+const actors = ["anna", "yoyo", "skye", "mike", "vincent", "peter", "may"];
+const backgrounds = [
+  "office",
+  "space",
+  "noise",
+  "meeting room",
+  "books",
+  "desk",
+];
+
 const CreateVideo: React.FC = () => {
   const [transcript, setTranscript] = useState("");
-  const [actor, setActor] = useState("yoyo"); // actor name should match with file name
   const [videoAttribute, setVideoAttribute] = useState("actor");
+  const [actor, setActor] = useState("yoyo"); // actor name should match with file name
+  const [background, setBackground] = useState("office"); // background name should match with file name
+  const [alignment, setAlignment] = useState("center");
 
   return (
     <div className="app-wrapper create-video-container">
@@ -42,11 +54,6 @@ const CreateVideo: React.FC = () => {
                 setAttr={setVideoAttribute}
               />
               <VideoAttributeItem
-                attr="voice"
-                selectedAttr={videoAttribute}
-                setAttr={setVideoAttribute}
-              />
-              <VideoAttributeItem
                 attr="alignment"
                 selectedAttr={videoAttribute}
                 setAttr={setVideoAttribute}
@@ -58,7 +65,27 @@ const CreateVideo: React.FC = () => {
               />
             </ul>
             {videoAttribute === "actor" && (
-              <ActorAttribute selectedActor={actor} setActor={setActor} />
+              <ImagesList
+                selctedVal={actor}
+                setVal={setActor}
+                type="actors"
+                list={actors}
+              />
+            )}
+            {videoAttribute === "voice" && <VoiceAttribute />}
+            {videoAttribute === "alignment" && (
+              <AlignmentAttribute
+                selectedAlignment={alignment}
+                setAlignment={setAlignment}
+              />
+            )}
+            {videoAttribute === "background" && (
+              <ImagesList
+                selctedVal={background}
+                setVal={setBackground}
+                type="backgrounds"
+                list={backgrounds}
+              />
             )}
           </div>
         </div>
@@ -68,7 +95,7 @@ const CreateVideo: React.FC = () => {
 };
 
 type AttributeProps = {
-  attr: "actor" | "voice" | "alignment" | "background";
+  attr: "actor" | "alignment" | "background";
   selectedAttr: string;
   setAttr: (attr: string) => void;
 };
@@ -88,18 +115,17 @@ const VideoAttributeItem: React.FC<AttributeProps> = ({
   );
 };
 
-const ActorAttribute = ({ selectedActor, setActor }) => {
-  const actors = ["anna", "yoyo", "skye", "mike", "vincent", "peter", "may"];
+const ImagesList = ({ selctedVal, setVal, type, list }) => {
   return (
-    <ul className="actors-list">
-      {actors.map((actor) => (
+    <ul className="images-list">
+      {list.map((val) => (
         <li
-          className={selectedActor === actor ? "active" : ""}
-          key={actor}
-          onClick={() => setActor(actor)}
+          className={selctedVal === val ? "active" : ""}
+          key={val}
+          onClick={() => setVal(val)}
         >
-          <img src={`./actors/${actor}.png`} alt="actor" />
-          <span>{actor}</span>
+          <img src={`./${type}/${val}.png`} alt={`${type} pic`} />
+          <span>{val}</span>
         </li>
       ))}
     </ul>
@@ -114,11 +140,28 @@ const VoiceAttribute: React.FC = () => {
   );
 };
 
-const AlignmentAttribute: React.FC = () => {
+const AlignmentAttribute = ({ selectedAlignment, setAlignment }) => {
   return (
-    <div>
-      <p>alignment</p>
-    </div>
+    <ul className="alignment-list">
+      <li
+        className={selectedAlignment === "left" ? "active" : ""}
+        onClick={() => setAlignment("left")}
+      >
+        Left
+      </li>
+      <li
+        className={selectedAlignment === "center" ? "active" : ""}
+        onClick={() => setAlignment("center")}
+      >
+        Center
+      </li>
+      <li
+        className={selectedAlignment === "right" ? "active" : ""}
+        onClick={() => setAlignment("right")}
+      >
+        Right
+      </li>
+    </ul>
   );
 };
 
