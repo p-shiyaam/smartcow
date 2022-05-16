@@ -51,3 +51,21 @@ export const Plans = [
     price: 43,
   },
 ];
+
+export const Billing = [
+  {
+    id: "4571222f6rthswfg9981fr55",
+    date: "7/12/2020",
+    amount: "28",
+  },
+  {
+    id: "4571222f6rthswfg9981fr56",
+    date: "7/12/2020",
+    amount: "38",
+  },
+  {
+    id: "4571222f6rthswfg9981fr57",
+    date: "7/12/2020",
+    amount: "14",
+  },
+];
